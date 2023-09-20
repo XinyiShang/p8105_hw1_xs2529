@@ -1,0 +1,82 @@
+---
+title: "p8105_hw1_xs2529"
+date: "2023-09-18"
+author: "Xinyi Shang"
+output: github_document
+---
+
+# Problem 1
+
+```{r setup, message = FALSE}
+library(moderndive)
+library(tidyverse)
+
+data("early_january_weather")
+```
+
+The variables in the *early_january_weather* are `r names(early_january_weather)`.
+
+This dataset has `r nrow(early_january_weather)` rows and `r ncol(early_january_weather)` columns. 
+
+The mean temperature is `r mean(early_january_weather$temp)`.
+
+<br>
+```{r, message =FALSE}
+
+ggplot(early_january_weather, aes(x = time_hour, y = temp, color= humid)) + geom_point()
+
+ggsave(filename = "temperature and humidity over time.png", plot = last_plot(), path = NULL)
+
+```
+The overall trend of the temperature is that it increases as time passes, while fluctuations are observed between date. The humid level does not show a trend. Around January 12th, a high humid level occured. 
+
+# Problem 2
+
+```{r}
+
+df <- tibble(
+  samp = rnorm(10),
+  vec_logical = samp>0,
+  vec_char = c("a","c","d","e","f","g","h","i","j","k"),
+  vec_factor = factor(c(1,1,2,2,2,3,3,3,3,3), levels = c(1,2,3))
+)
+
+col_1 = pull(df,var = samp)
+col_2 = pull(df,var = vec_logical)
+col_3 = pull(df,var = vec_char)
+col_4 = pull(df,var = vec_factor)
+
+print(df)
+
+```
+
+The mean of the ramdom sample (column 1) is `r mean(col_1)`.
+
+The mean of the logical vector (column 2) is `r mean(col_2)`.
+
+The mean of the character vector (column 3) is `r mean(col_4)`.
+
+The mean of the factor vector (column 4) is `r mean(col_4)`.
+
+The mean for the character vector and the factor vector does not work because they are not numeric values. 
+
+```{r, message = FALSE}
+col_2 = as.numeric(col_2)
+col_3 = as.numeric(col_3)
+col_4 = as.numeric(col_4)
+```
+
+After applied the `as.numeric` function to logical, character, and factor variable, the means becomes:
+
+The mean of the logical vector (column 2) is `r mean(col_2)`.
+
+The mean of the character vector (column 3) is `r mean(col_3)`.
+
+The mean of the factor vector (column 4) is `r mean(col_4)`.
+
+The result shows that the mean of the character vector and factor vector were unable to calculate because they are not numeric values. After convert to numeric value, the mean of the factor vector can be calculated. However, the mean of the character vector still cannot be calculated because they are letters and cannot be changed to numeric value by `as.numeric`.
+
+
+
+
+

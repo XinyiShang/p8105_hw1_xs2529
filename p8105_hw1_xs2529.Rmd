@@ -28,7 +28,7 @@ ggplot(early_january_weather, aes(x = time_hour, y = temp, color= humid)) + geom
 ggsave(filename = "temperature and humidity over time.png")
 
 ```
-The overall trend of the temperature is that it increases as time passes, while fluctuations are observed between date. The humid level does not show a trend. Around January 12th, a high humid level occured. 
+The overall trend of the temperature is that it increases as time passes, with noticeable daily fluctuations. The humid level does not show a trend. Around January 14th, there was a spike in the humidity level. 
 
 # Problem 2
 
